@@ -1,6 +1,7 @@
 <html>
 <head>
     <style>
+        .hide { display:none; }
     </style>
 </head>
 
@@ -10,7 +11,10 @@
             <label for="twitch-user">Twitch User</label>
             <input type="text" name="user">
         </div>
+
         <button type="submit">Submit</button>
+
+        <p id="stat"></p>
     </form>
 
   <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
@@ -43,12 +47,14 @@
             }
 
             function handleOnline() {
+            document.getElementById("stat").innerHTML = "user is currently online, joining stream";
             var link = 'https://www.twitch.tv/' + obj.user;
             console.log(link);
             window.location=link;
             }
             function handleOffline() {
                 player.addEventListener(Twitch.Player.ONLINE, handleOnline);
+                document.getElementById("stat").innerHTML = "user is currently offline, please wait";
             console.log("off")
             }
                 })};
